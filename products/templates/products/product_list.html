@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block page_title %}Productos{% endblock %}
+{% block content %}  
+    <div class="d-flex" >
+    {% for product in products %}
+        <div class="card flex-grow-1 me-4" style="flex-basis:0">
+            <div class="card-header">
+                <h5 class="mb-0">{{ product.name }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ product.description }}</p>
+            </div>
+            <div class="card-footer d-flex">
+                {% if product.quantity == 0 %}
+                    <span class="text-danger">No disponible</span>
+                    <span class="fs-6 flex-grow-1 text-end text-muted">{{ product.price}}€</span>
+                {% else %}
+                    {% if product.quantity <= 3 %}
+                        <span class="text-warning">Quedan pocas unidades</span>
+                    {% endif %}
+                    <span class="fs-6 flex-grow-1 text-end">{{ product.price}}€</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
